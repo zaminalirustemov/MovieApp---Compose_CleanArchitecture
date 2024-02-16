@@ -6,6 +6,7 @@ import az.lahza.movieapp.domain.repository.MovieRepository
 import az.lahza.movieapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.io.IOException
 import javax.inject.Inject
 
 class GetMoviesUseCase @Inject constructor(
@@ -20,8 +21,10 @@ class GetMoviesUseCase @Inject constructor(
             } else {
                 emit(Resource.Error(message = "No movie found"))
             }
+        }  catch (e: IOException) {
+            emit(Resource.Error("Network Error: Unable to load data"))
         } catch (e: Exception) {
-            emit(Resource.Error(message = e.localizedMessage ?: "Unknown Error Occurred"))
+            emit(Resource.Error(e.localizedMessage ?: "An unknown error occurred"))
         }
     }
 }
