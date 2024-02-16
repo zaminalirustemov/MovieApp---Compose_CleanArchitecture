@@ -42,7 +42,7 @@ fun MovieDetailScreen(
         state.movie?.let { movie ->
             Column(
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = CenterHorizontally
             ) {
                 Image(
                     painter = rememberImagePainter(data = movie.poster),
